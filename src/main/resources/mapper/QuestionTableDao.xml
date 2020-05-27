@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shj.dao.QuestionTableDao">
+
+    <resultMap type="com.shj.entity.QuestionTable" id="QuestionTableMap">
+        <result property="qid" column="qid" jdbcType="INTEGER"/>
+        <result property="question" column="question" jdbcType="VARCHAR"/>
+        <result property="correctanswer" column="correctAnswer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="QuestionTableMap">
+        select
+          qid, question, correctAnswer
+        from test.question_table
+        where qid = #{qid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="QuestionTableMap">
+        select
+          qid, question, correctAnswer
+        from test.question_table
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="QuestionTableMap">
+        select
+          qid, question, correctAnswer
+        from test.question_table
+        <where>
+            <if test="qid != null">
+                and qid = #{qid}
+            </if>
+            <if test="question != null and question != ''">
+                and question = #{question}
+            </if>
+            <if test="correctanswer != null">
+                and correctAnswer = #{correctanswer}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="qid" useGeneratedKeys="true">
+        insert into test.question_table(question, correctAnswer)
+        values (#{question}, #{correctanswer})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.question_table
+        <set>
+            <if test="question != null and question != ''">
+                question = #{question},
+            </if>
+            <if test="correctanswer != null">
+                correctAnswer = #{correctanswer},
+            </if>
+        </set>
+        where qid = #{qid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from test.question_table where qid = #{qid}
+    </delete>
+
+</mapper>

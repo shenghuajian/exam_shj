@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shj.dao.QuesDao">
+
+    <select id="getOption" resultType="string">
+        SELECT o.option_text FROM answers_table a
+        LEFT JOIN option_table o ON a.oid = o.oid
+        WHERE a.qid=#{qid}
+        ORDER BY o.option_rank ASC
+    </select>
+
+</mapper>

@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3307/test?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 970809
+mybatis:
+  type-aliases-package: com.shj.entity
+  mapper-locations: classpath:mapper/*Dao.xml
