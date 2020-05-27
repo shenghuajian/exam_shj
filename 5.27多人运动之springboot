@@ -1,7 +1,18 @@
 1. ## Maven的Scope区别和描述
+* 一组 dependency 一般包含4个标签，groupId 和 artifactId 相当于项目的定位。groupId 是包名，artifactId 是唯一ID。version 代表版本号。而 scope 是为了限制 dependency 的作用范围
+* compile：是scope的默认值，表示此依赖会参与项目的编译,测试,运行和打包
+* provided：会参与编译，测试和运行。不会被打包到 artifact 中
+* runtime：不会参与编译阶段.但在测试,运行和打包阶段都会参与
+* test：只参与测试和执行阶段
+* system：需要告知maven如何去找到依赖,如果需要引用的依赖在Maven仓库不存在时会使用
+* import：从其他 pom 文件中导入依赖
 
 2. ## 描述Spring  @Configuration @Bean @ComponentScan @PropertySource @Value注解
-
+* @Configuration配置类
+* @Bean创建bean交由spring管理
+* @ComponentScan 包扫描，扫描多个包
+* @PropertySource获取配置文件
+* @Value 获取配置文件中的值
 3. ## 什么是SpringBoot,优点和缺点?
 >Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。
 Spring Boot 主要有如下优点：
@@ -22,8 +33,19 @@ Spring Boot 主要有如下优点：
 
 >Spring boot 默认使用 Jpa进行sql查询，但是遇到复杂的sql，还是写原生sql比较好
 4. ## 什么是yml? 语法格式（说3点)
+>YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。与属性文件相比，如果我们想要在配置文件中添加复杂的属性，YAML 文件就更加结构化，而且更少混淆。可以看出 YAML 具有分层配置数据。
 
+>缩进时不允许使用 Tab键，只允许使用空格
+
+>>缩进的空格的数目不重要，只要相同层级的元素左对齐即可
+
+>大小写敏感
 5. ## SpringBoot(4个注解)并说明其作用
+* @SpringBootApplication：核心启动类的注解,是一个组合注解
+* @SpringBootConfiguration：SpringBoot 的配置注解
+* @EnableAutoConfiguration：自动配置注解，根据依赖自动配置项目的配置项
+* @AutoConfigurationPackage：在 @EnableAutoConfiguration 中，表示将该注解所在的包作为自动配置包
+* @SpringBootTest：springboot 的测试注解
 
 6. ## Spring Boot 的核心注解是哪个？主要由哪几个注解组成的？
 >启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：
@@ -34,6 +56,8 @@ Spring Boot 主要有如下优点：
 
 >@ComponentScan：Spring组件扫描。
 7. ## Spring-boot-maven-plugin插件作用
+* Spring Boot的Maven插件能够以Maven的方式为应用提供Spring Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。
+* Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。
 
 8. ## Springboot自动配置的原理
 >注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置的核心，
@@ -43,5 +67,13 @@ Spring Boot 主要有如下优点：
 
 >每一个自动配置类结合对应的 xxxProperties.java 读取配置文件进行自动配置功能
 9. ## **Springboot读取配置文件的方式** 
+>当前目录下的一个/config子目录
+>当前目录一个classpath下的/config包
+classpath根路径（root）这个列表是按优先级排序的（列表中位置高的将覆盖位置低的）
 
 10. ## application 和 bootstrap 配置文件的区别
+>spring boot 核心的两个配置文件：
+
+>bootstrap (. yml 或者 . properties)：boostrap 由父 ApplicationContext 加载的，比 applicaton 优先加载，配置在应用程序上下文的引导阶段生效。一般来说我们在 Spring Cloud Config 或者 Nacos 中会用到它。且 boostrap 里面的属性不能被覆盖；
+
+>application (. yml 或者 . properties)： 由ApplicatonContext 加载，用于 spring boot 项目的自动化配置。
