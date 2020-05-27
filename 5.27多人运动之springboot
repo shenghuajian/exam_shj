@@ -15,6 +15,10 @@ Spring Boot 主要有如下优点：
 >没有代码生成，也不需要XML配置。
 
 >避免大量的 Maven 导入和各种版本冲突。
+
+>缺点是集成度较高，使用过程中不太容易了解底层。
+
+>使用了太多运行时的反射和proxy 导致很臃肿 会占用很庞大的服务器内存
 4. ## 什么是yml? 语法格式（说3点)
 
 5. ## SpringBoot(4个注解)并说明其作用
@@ -31,7 +35,8 @@ Spring Boot 主要有如下优点：
 
 8. ## Springboot自动配置的原理
 >注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置的核心，
-@EnableAutoConfiguration 给容器导入META-INF/spring.factories 里定义的自动配置类。
+
+>@EnableAutoConfiguration 给容器导入META-INF/spring.factories 里定义的自动配置类。
 筛选有效的自动配置类。
 
 >每一个自动配置类结合对应的 xxxProperties.java 读取配置文件进行自动配置功能
