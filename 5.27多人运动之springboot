@@ -1,3 +1,207 @@
+1. ### 数据库设计三大范式
+
+   * 第一范式：每个列都不可以再拆分.
+
+   * 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分.
+
+   * 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键.
+
+2. #### **JAVA中PO DTO VO的区别**
+
+   * VO
+     value object：值对象
+     通常用于业务层之间的数据传递，由new创建，由GC回收.
+     和PO一样也是仅仅包含数据而已，但应是抽象出的业务对象，可以和表对应，也可以不是.
+
+   * PO
+     persistant object：持久层对象
+     是ORM(Objevt Relational Mapping)框架中Entity，PO属性和数据库中表的字段形成一一对应关系
+     VO和PO，都是属性加上属性的get和set方法；表面看没什么不同，但代表的含义是完全不同的
+
+   * DTO
+     data transfer object：数据传输对象.
+     是一种设计模式之间传输数据的软件应用系统，数据传输目标往往是数据访问对象从数据库中检索数据
+     数据传输对象与数据交互对象或数据访问对象之间的差异是一个以不具任何行为除了存储和检索的数据（访问和存取器）
+     简而言之，就是接口之间传递的数据封装
+
+3. ### 详细描述什么是Spring?
+
+   * Spring是一个轻量级Java开发框架，
+     目的是为了解决企业级应用开发的业务逻辑层和其他各层的耦合问题。
+   * Spring最根本的使命是解决企业级应用开发的复杂性，即简化Java开发。
+     两个核心特性，也就是依赖注入（dependency injection，DI）和面向切面编程（aspect-oriented programming，AOP）。
+
+4. ### 什么是Spring IOC？
+
+   * 控制反转即IoC (Inversion of Control)，它把传统上由程序代码直接操控的对象的调用权交给容器，通过容器来实现对象组件的装配和管理。所谓的“控制反转”概念就是对组件对象控制权的转移，从程序代码本身转移到了外部容器。
+
+   * Spring IOC 负责创建对象，管理对象（通过依赖注入（DI），装配对象，配置对象，并且管理这些对象的整个生命周期。
+
+5. ### 什么是Spring AOP?描述其应用场景（最少2个）
+
+   * AOP(Aspect-Oriented Programming)，一般称为面向切面编程，作为面向对象的一种补充，用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取并封装为一个可重用的模块，这个模块被命名为“切面”（Aspect），减少系统中的重复代码，降低了模块间的耦合度，同时提高了系统的可维护性。可用于权限认证、日志、事务处理等。
+
+6. ### 描述Spring Bean的作用域？
+
+   *  **singleton** : bean在每个Spring ioc 容器中只有一个实例。
+   *  **prototype**：一个bean的定义可以有多个实例。
+   *  **request**：每次http请求都会创建一个bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。
+   *  **session**：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+   *  **global-session**：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。 
+
+7. ### Spring 注入有几种方式？
+
+   * Setter注入
+   * 构造器注入
+   * 静态工厂的方法注入
+   * 实例工厂方法注入
+
+8. ### SpringBean 生命周期？
+
+   *  Bean的定义——Bean的初始化——Bean的使用——Bean的销毁 
+
+9. ### Spring框架中 用到了哪些设计模式？（不低于3个）
+
+   *  工厂模式：BeanFactory就是简单工厂模式的体现，用来创建对象的实例；
+   *  单例模式：Bean默认为单例模式。
+   *  代理模式：Spring的AOP功能用到了JDK的动态代理和CGLIB字节码生成技术；
+   *  模板方法：用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。
+   *  观察者模式：定义对象键一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都会得到通知被制动更新，如Spring中listener的实现–ApplicationListener。 
+
+10. ### 描述Spring事务传播行为？ 
+
+    * **spring事务的传播行为说的是，当多个事务同时存在的时候，spring如何处理这些事务的行为**。 
+
+      ① REQUIRED：如果**当前没有事务，就创建一个新事务**，如果**当前存在事务，就加入该事务**，该设置是最常用的设置。
+
+      ②REQUIRES_NEW：**创建新事务，无论当前存不存在事务，都创建新事务。**
+
+      ③ SUPPORTS：**支持当前事务**，如果**当前存在事务**，就**加入**该事务，如果**当前不存在事务**，就以**非事务执行**。
+
+      ④NOT_SUPPORTED：以**非事务方式执行操作**，如果**当前存在**事务，就把**当前事务挂起**。
+
+      ⑤MANDATORY：**支持当前事务**，如果**当前存在事务**，就**加入该事务**，如果**当前不存在事务，就抛出异常**。
+
+      ⑥NEVER：以**非事务方式执行**，如果**当前存在事务**，则**抛出异常**。
+
+      ⑦ PROPAGATION_NESTED：如果**当前存在事务**，则在**嵌套事务内执行**。如果**当前没有事务**，则**按REQUIRED属性执行**。
+
+11. ### 描述Spring事务的隔离级别？
+
+    1、ISOLATION_**DEFAULT**：用**底层数据库的设置隔离级别**，数据库设置的是什么我就用什么；
+
+    2、ISOLATION_READ_**UNCOMMITTED**：**未提交读**，**最低隔离级别**、**事务未提交前，就可被其他事务读取**（会出现**幻读、脏读、不可重复读**）；
+
+    3、ISOLATION_READ_**COMMITTED**：**提交读**，一个事务提交后才能被其他事务读取到（会造成**幻读、不可重复读**），**SQL server 的默认级别**；
+
+    4、ISOLATION_**REPEATABLE_READ**：**可重复读**，保证**多次读取同一个数据**时，其**值都和事务开始时候的内容是一致**，**禁止读取到别的事务未提交的数据**（会造成**幻读**），**MySQL** 的默认级别；
+
+    5、ISOLATION_**SERIALIZABLE**：**序列化**，**代价最高最可靠的隔离级别**，该隔离级别能**防止脏读、不可重复读、幻读**
+
+12. ### Spring事务传播行为 REQUIRES和REQUIRES_NEW区别
+
+    *  （REQUIRED）**支持当前事务**，如果**当前有事务， 那么加入事务**， 如果**当前没有事务则新建一个**(默认情况) 
+    *  (REQUIRES_NEW) 支持当前事务，如果当前有事务，则**挂起当前事务，然后新创建一个事务**，如果**当前没有事务，则自己创建一个事务。** 
+
+
+1. ## Java有什么缺点（至少3条）
+
+> 1、需要运行环境、不适合开发桌面应用程序
+   
+> 2、由于为了跨平台的功能，为了极度的伸缩能力，所以极大的增加了产品的复杂性。
+
+> 3、JAVA是OOP语言，但是它适合的是BS系统，在WEB项目中JAVA的实力毋庸置疑，但是转到了底层的程序却无法同C++抗衡。
+
+> 4、乱码是JAVA的第一公敌
+
+> 5、无法定义一个好的标准使得开发时使用了框架，在新的程序员来到公司时必须先了解框架，延缓了开发的时间。
+   
+
+2. ## JAVA常见编码规范（说5条）
+
+   命名风格  
+
+   *  不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 
+   *  严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。 
+   *  方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格，必须遵从 驼峰形式 
+   *  常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长 
+   *  类型与中括号紧挨相连来表示数组 
+   *  包名统一使用小写，点分隔符之间有且仅有一个自然语义的英语单词。 
+   *  杜绝完全不规范的缩写，避免望文不知义。 
+
+3. ## 说出git 命令（至少说6个）并分别说出其含义
+
+   * git init 初始化本地 git 仓库 
+   * git status 查看当前版本状态 
+   * git diff 显示所有未添加至 index 的变更 
+   * git add <path> 将该文件添加到缓存 
+   * git commit -m ‘xxx’ 提交 
+   * git log 显示日志 
+   * git show <commit> 显示某个提交的详细内容 
+   * git branch 显示本地分支 
+   * git checkout <branch> 切换分支 
+   * git remote -v 列出远程分支详细信息 
+   * git merge <branch> 合并分支到当前分支，存在两个 
+
+4. ## Spring中如果发生循环注入会怎样？(a注入b b注入a)
+
+   * Spring内部代码是当**解析依赖注入关系的时候**，先**判断是不是 @LazyBean**，如果**是**，则暂**不解析该依赖**，如果**不是**则**会进行依赖Bean的查找**，如果**查找不到**则**会创建**。但是在**创建的时候**，由于和**需要注入的Bean有循环依赖关系**，所以注入**Bean创建失败**。
+
+     
+
+5. ## SpringMVC中的Bean是线程安全的吗？ 说出你的解决方案？
+
+   * SpringMVC是默认单例模式的 ,当涉及到改变成员变量的时候就会产生线程不安全,最简单的解决方法是在Controller类上添加@scope("prototype")注解实现多例
+
+6. ## SpringMVC的执行流程？
+
+   （1）用户发送请求至前端控制器DispatcherServlet；
+   
+   （2） DispatcherServlet**收到请求后**，调用**HandlerMapping处理器映射器**，请求**获取Handle**；
+   
+   （3）处理器映射器**根据请求url**找到**具体的处理器**，生成**处理器对象及处理器拦截器**(如果有则生成)一并**返回给DispatcherServlet**；
+   
+   （4）DispatcherServlet 调用 **HandlerAdapter**处理器适配器；
+   
+   （5）**HandlerAdapter** 经过**适配调用** 具体**处理器**(**Handler**，也叫后端控制器)；
+   
+   （6）**Handler**执行**完成返回ModelAndView**；
+  
+   （7）**HandlerAdapter**将**Handler执行结果ModelAndView**返回**给DispatcherServlet**；
+   
+   （8）**DispatcherServlet**将**ModelAndView**传**给ViewResolver视图解析器**进行解析；
+   
+   （9）**ViewResolver解析**后**返回具体View**；
+   
+   （10）**DispatcherServlet**对**View**进行**渲染视图**（即将模型数据填充至视图中）
+  
+   （11）**DispatcherServlet响应用户**
+
+7. ## @RequestBody 和@ResponseBody的区别
+
+   * **@RequestBody**： 主要用来**接收前端传递给后端的json字符串**中的数据的(请求体中的数据的) 
+   * **@ResponseBody**： 该注解用于**将Controller的方法返回的对象**，**通过适当的HttpMessageConverter转换为指定格式后**，写入**到Response对象的body**数据区 
+
+8. ## @RequestParam和@PathViriable的区别
+
+   * **请求路径上有个id的变量值**，可以**通过@PathVariable来获取** @RequestMapping(value = “/page/{id}”, method = RequestMethod.GET)
+
+   * **@RequestParam**用来**获得静态的URL**请求入参 spring注解时action里用到。
+
+9. ## @Resource和 @Autowired/ @Qualifier的区别
+
+   * @Autowired 根据**类型注入**， 
+   * @Resource 默认****根据名字注入****，**其次按照类型**搜索 推荐使用这种配合service注解命名速度快
+   * @Autowired @Qualifie("userService") 两个结合起来可以根据名字和类型注入
+
+10. ## @RequestMapping注解作用
+
+> 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。 
+
+
+
+# spring boot 面试
+
 1. ## Maven的Scope区别和描述
 * 一组 dependency 一般包含4个标签，groupId 和 artifactId 相当于项目的定位。groupId 是包名，artifactId 是唯一ID。version 代表版本号。而 scope 是为了限制 dependency 的作用范围
 * compile：是scope的默认值，表示此依赖会参与项目的编译,测试,运行和打包
