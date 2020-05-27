@@ -158,16 +158,26 @@
 
 
 
-## SpringBoot面试题
+## Spring Boot面试题
 
 ### Maven的Scope区别和描述
 
-* 一组 dependency 一般包含4个标签，groupId 和 artifactId 相当于项目的定位。groupId 是包名，artifactId 是唯一ID。version 代表版本号。而 scope 是为了限制 dependency 的作用范围
+* 一组 dependency 一般包含4个标签，groupId 和 artifactId 相当于项目的定位。
+
+* groupId 是包名，artifactId 是唯一ID。version 代表版本号。而 scope 是为了限制 dependency 的作用范围
+
 * compile：是scope的默认值，表示此依赖会参与项目的编译,测试,运行和打包
+
 * provided：会参与编译，测试和运行。不会被打包到 artifact 中
+
 * runtime：不会参与编译阶段.但在测试,运行和打包阶段都会参与
+
 * test：只参与测试和执行阶段
+
+  
+
 * system：需要告知maven如何去找到依赖,如果需要引用的依赖在Maven仓库不存在时会使用
+
 * import：从其他 pom 文件中导入依赖
 
 ### 描述Spring @Configuration @Bean @ComponentScan @PropertySource @Value注解
@@ -178,13 +188,17 @@
 * @PropertySource获取配置文件
 * @Value 获取配置文件中的值
 
-### 什么是SpringBoot，优点和缺点?
+### 什么是 Spring Boot，优点和缺点?
 
-* 容易上手，提升开发效率，为 Spring 开发提供一个更快、更广泛的入门体验。
-  开箱即用，远离繁琐的配置。
-  提供了一系列大型项目通用的非业务性功能，例如：内嵌服务器、安全管理、运行数据监控、运行状况检查和外部化配置等。
+* Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。
+
+* 容易上手，提升开发效率，开箱即用，远离繁琐的配置。
+  提供了一系列大型项目通用的非业务性功能
+
   没有代码生成，也不需要XML配置。
   避免大量的 Maven 导入和各种版本冲突。
+
+* 例如：内嵌服务器、安全管理、运行数据监控、运行状况检查和外部化配置等。
 
 * 版本迭代速度很快，一些模块改动很大
 
@@ -192,26 +206,25 @@
 
 ### 什么是 yml ? 语法格式（说3点)
 
-* YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。与属性文件相比，如果我们想要在配置文件中添加复杂的属性，YAML 文件就更加结构化，而且更少混淆。可以看出 YAML 具有分层配置数据
+* YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。YAML 具有分层配置数据。
 * 使用缩进表示层级关系
-
-2. 缩进时不允许使用 Tab键，只允许使用空格
-3. 缩进的空格的数目不重要，只要相同层级的元素左对齐即可
-4. 大小写敏感
+* 缩进时不允许使用 Tab键，只允许使用空格
+* 缩进的空格的数目不重要，只要相同层级的元素左对齐即可
+* 大小写敏感
 
 ### Spring Boot (4个注解)并说明其作用
 
-* @SpringBootApplication：核心启动类的注解,是一个组合注解
-* @SpringBootConfiguration：SpringBoot 的配置注解
+* @SpringBootApplication：核心启动类的注解，是一个组合注解
+* @SpringBootConfiguration： Spring Boot 的配置注解
 * @EnableAutoConfiguration：自动配置注解，根据依赖自动配置项目的配置项
-* @AutoConfigurationPackage：在 @EnableAutoConfiguration 中，表示将该注解所在的包作为自动配置包
-* @SpringBootTest：springboot 的测试注解
+* @AutoConfigurationPackage：将该注解所在的包作为自动配置包
+* @SpringBootTest：Spring Boot 的测试注解
 
 ### Spring Boot 的核心注解是哪个？主要由哪几个注解组成的？
 
-* 启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：
+* 启动类上面的注解是 @SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：
 * @SpringBootConfiguration：组合了 @Configuration 注解，实现配置文件的功能。
-* @EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。
+* @EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项
 * @ComponentScan：Spring 组件扫描。
 
 ### Spring-boot-maven-plugin 插件作用
@@ -219,20 +232,22 @@
 * Spring Boot的Maven插件能够以Maven的方式为应用提供Spring Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。
 * Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。
 
-### Springboot 自动配置的原理
+### Spring Boot 自动配置的原理
 
-* 注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置的核心，@EnableAutoConfiguration 给容器导入META-INF/spring.factories 里定义的自动配置类。
+* 注解 @EnableAutoConfiguration，@Configuration，@ConditionalOnClass 就是自动配置的核心，@EnableAutoConfiguration 给容器导入META-INF/spring.factories 里定义的自动配置类。
 * 筛选有效的自动配置类。
 * 每一个自动配置类结合对应的 xxxProperties.java 读取配置文件进行自动配置功能
 
-### Springboot 读取配置文件的方式
+### Spring Boot 读取配置文件的方式
 
-* 当前目录下的一个/config子目录
-* 当前目录
-* 一个classpath下的/config包
-* classpath根路径（root）这个列表是按优先级排序的（列表中位置高的将覆盖位置低的）
+* 读取 application 文件
+* @Value 注解读取方式
+* @ConfigurationProperties 注解读取方式
+* @PropertySource + @Value 注解读取方式
+* @PropertySource + @ConfigurationProperties 注解读取方式
+* Environment 读取方式
 
 ### application 和 bootstrap 配置文件的区别
 
-* bootstrap (. yml 或者 . properties)：boostrap 由父 ApplicationContext 加载的，比 applicaton 优先加载，配置在应用程序上下文的引导阶段生效。一般来说我们在 Spring Cloud Config 或者 Nacos 中会用到它。且 boostrap 里面的属性不能被覆盖；
+* bootstrap (. yml 或者 . properties)：bootstrap 由父 ApplicationContext 加载的，比 applicaton 优先加载，配置在应用程序上下文的引导阶段生效。且 bootstrap 里面的属性不能被覆盖；
 * application (. yml 或者 . properties)： 由ApplicatonContext 加载，用于 spring boot 项目的自动化配置。
