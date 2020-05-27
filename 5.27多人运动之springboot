@@ -1,1 +1,19 @@
-5.27多人运动之springboot!!!
+1. ## Maven的Scope区别和描述
+
+2. ## 描述Spring  @Configuration @Bean @ComponentScan @PropertySource @Value注解
+
+3. ## 什么是SpringBoot,优点和缺点?
+
+4. ## 什么是yml? 语法格式（说3点)
+
+5. ## SpringBoot(4个注解)并说明其作用
+
+6. ## Spring Boot 的核心注解是哪个？主要由哪几个注解组成的？
+
+7. ## Spring-boot-maven-plugin插件作用
+
+8. ## Springboot自动配置的原理
+
+9. ## **Springboot读取配置文件的方式** 
+
+10. ## application 和 bootstrap 配置文件的区别
